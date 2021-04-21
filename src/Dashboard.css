@@ -1,0 +1,98 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: auto;
+  
+}
+
+ul li {
+  border: 1px solid #ddd;
+  margin: auto;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+}
+
+li p {
+  padding-left: 5%;
+  text-transform: uppercase;
+}
+
+.patient-container{
+  display: flex;
+}
+
+.welcomeText{
+  display: inline;
+  color: rgb(0, 0, 0);
+  margin-left:auto; 
+  margin-right:10px;
+  margin-top: 4px;
+}
+
+.patientList{
+  display: flex;
+  height: 60px;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.patientListText{
+  display: inline;
+  margin-left: 20px;
+}
+
+
+.moreBtn{
+  margin-left: 20%;
+}
+
+.header{
+  padding: 0% 0% 5% 0%;
+  height: 20px;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.search{
+  display: flex;
+  padding: '2px 4px';
+  width: 300px;
+  height: 40px;
+  border-radius: 30px;
+  align-items: center;
+  
+}
+
+.inputPatient{
+  margin-left: 5%;
+  flex: 2;
+  width: fit-content;  
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.iconBtn{
+  float: right;  
+}
+
+.mainContainer{
+  /* background-color: rgb(230, 255, 255); */
+  background: linear-gradient(180deg, rgb(142, 255, 255) 0%, rgba(230, 249, 255, 0) 100%);
+}
+
+.searchContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+  background: linear-gradient(180deg, rgb(142, 255, 255) 0%, rgba(230, 249, 255, 0) 100%);
+}
