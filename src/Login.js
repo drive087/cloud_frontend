@@ -13,39 +13,18 @@ function Login(props) {
   const [username, setUser] = useState(null);
   const [password, setPass] = useState(null);
 
-  var dummy_email = "drive"
-  var dummy_pass = "123456"
-  var endpoint = "http://ubuntu@ec2-13-250-20-113.ap-southeast-1.compute.amazonaws.com:8080/"
+  var endpoint = "http://ec2-13-213-29-64.ap-southeast-1.compute.amazonaws.com:8080/"
 
-  // useEffect(() => {
-
-  //   if (localStorage.getItem('token') != "null"){
-  //     console.log('useEff')
-
-  //     axios.get('http://localhost:8080/login',
-  //     {
-  //       headers: { Authorization: `Token ${localStorage.getItem('token')}` }
-  //     })
-  //     .then(res=>{
-  //         if(res.status === 200){
-  //           setUser(res.data.user.username) 
-  //           props.history.push({
-  //             pathname:'/Dashboard',
-  //             state: { username: res.data.user.username,_id: res.data.user._id}
-  //           });
-  //         }
-  //     })
-  //   }
-
-  // },[])
 
   function login(username,password,history){
-      axios.post(endpoint+'login',
+      console.log(endpoint)
+      axios.post(endpoint+`login`,
     { 
       'username':username,
       'password':password
     })
     .then(res=>{
+      console.log(res)
       if(res.data.statusCode == 200){
         window.alert('Login Success!!')
         history.push({

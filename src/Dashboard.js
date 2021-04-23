@@ -27,7 +27,7 @@ function Dashboard(props) {
   const [search, setSearch] = useState("");
   const [cart, setCart] = useState([]);
   // const [cart, setCart] = useState([])
-  var endpoint = "http://ubuntu@ec2-13-250-20-113.ap-southeast-1.compute.amazonaws.com:8080/"
+  var endpoint = "http://ec2-13-213-29-64.ap-southeast-1.compute.amazonaws.com:8080/"
   // var cart = [{'name':'mama','amount':2}
   // , {'name':'lay','amount':1}]
 
