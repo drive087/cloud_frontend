@@ -77,7 +77,7 @@ function Dashboard(props) {
               setCart(new_cart)
             }
           })
-        }, 1000);
+        }, 5000);
 
         
     },[])

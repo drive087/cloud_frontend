@@ -15,10 +15,9 @@ function Login(props) {
 
   var dummy_email = "drive"
   var dummy_pass = "123456"
-  var endpoint = "http://ubuntu@ec2-13-250-20-113.ap-southeast-1.compute.amazonaws.com:8080/"
+  var endpoint = "http://localhost:8080/"
 
   // useEffect(() => {
-
   //   if (localStorage.getItem('token') != "null"){
   //     console.log('useEff')
 
@@ -36,7 +35,6 @@ function Login(props) {
   //         }
   //     })
   //   }
-
   // },[])
 
   function login(username,password,history){

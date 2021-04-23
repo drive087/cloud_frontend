@@ -21,6 +21,13 @@ function ItemImg(props) {
             </div>
            );
     }
+    if(name == "milo"){
+        return(
+        <div>
+            <p><img src={mama_img} width={40} height={40}/> x{amount}</p>
+        </div>
+           );
+    }
     return (
        <img src={lay_img}/>
       );
