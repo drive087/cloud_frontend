@@ -15,66 +15,65 @@ function Login(props) {
 
   var dummy_email = "drive"
   var dummy_pass = "123456"
-  
+  var endpoint = "http://ubuntu@ec2-13-250-20-113.ap-southeast-1.compute.amazonaws.com:8080/"
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (localStorage.getItem('token') != "null"){
-      console.log('useEff')
+  //   if (localStorage.getItem('token') != "null"){
+  //     console.log('useEff')
 
-      axios.get('http://localhost:8080/login',
-      {
-        headers: { Authorization: `Token ${localStorage.getItem('token')}` }
-      })
-      .then(res=>{
-          if(res.status === 200){
-            setUser(res.data.user.username) 
-            props.history.push({
-              pathname:'/Dashboard',
-              state: { username: res.data.user.username,_id: res.data.user._id}
-            });
-          }
-      })
-    }
+  //     axios.get('http://localhost:8080/login',
+  //     {
+  //       headers: { Authorization: `Token ${localStorage.getItem('token')}` }
+  //     })
+  //     .then(res=>{
+  //         if(res.status === 200){
+  //           setUser(res.data.user.username) 
+  //           props.history.push({
+  //             pathname:'/Dashboard',
+  //             state: { username: res.data.user.username,_id: res.data.user._id}
+  //           });
+  //         }
+  //     })
+  //   }
 
-  },[])
+  // },[])
 
   function login(username,password,history){
-      if(username == dummy_email && password == dummy_pass){
+      axios.post(endpoint+'login',
+    { 
+      'username':username,
+      'password':password
+    })
+    .then(res=>{
+      if(res.data.statusCode == 200){
+        window.alert('Login Success!!')
         history.push({
-                  pathname:'/Dashboard',
-                  state: { username: username}
-                });
+              pathname:'/Dashboard',
+              state: { username: username}
+            });
       }
       else{
-          window.alert('Please check username or password')
+            window.alert('Please check username or password')
+        }
+  })
+  }
+
+  function register(username,password){
+    axios.post(endpoint+'register',
+    { 
+      'username':username,
+      'password':password
+    })
+    .then(res=>{
+      console.log(res)
+      if(res.status === 200){
+        window.alert('Success!!')
+        setUser('')
+        setPass('')
       }
-    // axios.post('http://localhost:8080/login',{
-    //   username: username,
-    //   password: password
-    // }).then(res=>{
-    //   if(res.status === 200){
-    //     console.log('success')
-    //     localStorage.setItem('token', res.data.user.token)
-    //     history.push({
-    //       pathname:'/Dashboard',
-    //       state: { username: username,_id: res.data.user._id}
-    //     });
-    //   }
-    // }).catch(err=>{
-    //   if(err.response.status === 400){
-    //     // setStatus('*ชื่อผู้ใช้หรือรหัสผ่านผิด')
-    //   }
-    //   if(err.response.status === 422){
-    //     let res = err.response.data
-    //     if(res.errors.password){
-    //       // setStatus('*กรุณากรอกรหัสผ่าน')
-    //     }
-    //     if(res.errors.username){
-    //       // setStatus('*กรุณากรอกชื่อผู้ใช้')
-    //     }
-    //   }
-    // })
+  })
+
   }
  
   return (
@@ -102,10 +101,16 @@ function Login(props) {
           value={password}
         />
       </div>
-      <div className="LogButton"
-       onClick={()=>login(username,password,props.history)}>
-        <p>เข้าสู่ระบบ</p>
-      </div>
+      <div>
+        <div className="RegisterButton"
+        onClick={()=>register(username,password)}>
+          <p>สมัครสมาชิก</p>
+        </div>
+        <div className="LogButton"
+        onClick={()=>login(username,password,props.history)}>
+          <p>เข้าสู่ระบบ</p>
+        </div>
+        </div>
     </div>
   );
 }

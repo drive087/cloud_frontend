@@ -4,6 +4,7 @@ import axios from '../node_modules/axios';
 import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ItemCard from './ItemCard'
+import CashierModal from './CashierModal.js'
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -24,13 +25,22 @@ const useStyles = makeStyles((theme) => ({
 function Dashboard(props) {
   const [username, setUsername] = useState(props.location.state.username);
   const [search, setSearch] = useState("");
-  const [pageOffset, setPageOffset] = useState(0);
+  const [cart, setCart] = useState([]);
   // const [cart, setCart] = useState([])
-  var cart = [{'name':'mama','amount':2}, {'name':'lay','amount':1}]
+  var endpoint = "http://ubuntu@ec2-13-250-20-113.ap-southeast-1.compute.amazonaws.com:8080/"
+  // var cart = [{'name':'mama','amount':2}
+  // , {'name':'lay','amount':1}]
 
   function onLogout(){
     localStorage.setItem('token', null);
     window.location.reload();
+  }
+
+  function onPurchase(){
+    axios.post(endpoint+'purchase')
+        .then(res=>{
+          console.log(res)
+        })
   }
 
   function renderList(cart){
@@ -46,28 +56,31 @@ function Dashboard(props) {
         })
       )
       }
-
   }
 
   
 
-//   useEffect(() => {
+  useEffect(() => {
+        const interval = setInterval(() => {
+          axios.get(endpoint+'view')
+          .then(res=>{
+            let user_transaction = res.data.body.users
+            var i;
+            for (i = 0; i < user_transaction.length; i++) {
+              let new_cart = []
+              if(user_transaction[i]['username'] == username){
+                var current_transaction = user_transaction[i]['transaction']
+                for(var item in user_transaction[i]['transaction']){
+                  new_cart.push({'name':item, 'amount':current_transaction[item][0]})
+                }
+              }
+              setCart(new_cart)
+            }
+          })
+        }, 1000);
 
-//         axios.get('http://localhost:8080/'+props.location.state._id+'/getpatients',
-//         {
-//           headers: { Authorization: `Token ${localStorage.getItem('token')}` }
-//         })
-//         .then(res=>{
-//             if(res.status === 200){
-//                 var patientlist = []
-//                 for(var x in res.data){
-//                   patientlist.push(res.data[x])
-//                 }
-
-//                 setPatient(patientlist);
-//             }
-//         })
-//     },[])
+        
+    },[])
 
   if(username == null){
     return(<div>Loading</div>)
@@ -76,17 +89,20 @@ function Dashboard(props) {
     <div className="container">
       <div style={{marginTop: '20px', justifyContent: 'center', alignItems: 'center' }}>
         <h2>
-          My Cart
+          รถเข็น
         </h2>
       </div>
       <div style={{justifyContent: 'center', alignItems: 'center' }}>
         {renderList(cart)}
       </div>
-      <div className="LogButton" style={{position:"absolute", bottom:0, marginBottom:"100px"}}>
-        <p>Purchase</p>
+    
+      <div className="PurchaseButton" onClick={()=>onPurchase()} style={{position:"absolute", bottom:0, marginBottom:"100px"}}>
+        <p>ชำระเงิน</p>
       </div>
     </div>
   );
 }
 
 export default withRouter(Dashboard);
+
+

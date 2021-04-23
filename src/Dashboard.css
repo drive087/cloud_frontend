@@ -96,3 +96,21 @@ li p {
   font-size: calc(10px + 2vmin);
   background: linear-gradient(180deg, rgb(142, 255, 255) 0%, rgba(230, 249, 255, 0) 100%);
 }
+
+.PurchaseButton{
+  width: 80vw;
+  height: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 166, 82);
+  font-weight: 500;
+  border-radius: 1vw;
+  margin-top: 40%;
+}
+
+.PurchaseButton p{
+  margin: 0;
+  color: white;
+  padding-left: 0%;
+}

@@ -58,7 +58,7 @@ audio { display:none;}
 }
 
 .LogButton{
-  width: 25vw;
+  width: 30vw;
   height: 10vw;
   display: flex;
   align-items: center;
@@ -70,6 +70,24 @@ audio { display:none;}
 }
 
 .LogButton p{
+  margin: 0;
+  color: white;
+  padding-left: 0%;
+}
+
+.RegisterButton{
+  width: 30vw;
+  height: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2c5892;
+  font-weight: 500;
+  border-radius: 1vw;
+  margin-top: 40%;
+}
+
+.RegisterButton p{
   margin: 0;
   color: white;
   padding-left: 0%;
