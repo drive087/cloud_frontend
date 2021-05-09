@@ -36,7 +36,7 @@ function Dashboard(props) {
     show: false
   })
   // const [cart, setCart] = useState([])
-  var endpoint = "http://ec2-18-138-255-177.ap-southeast-1.compute.amazonaws.com:8080/"
+  var endpoint = "http://ec2-54-251-164-227.ap-southeast-1.compute.amazonaws.com:8080/"
   // var cart = [{'name':'mama','amount':2}
   // , {'name':'lay','amount':1}]
 

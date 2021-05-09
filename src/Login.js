@@ -13,7 +13,7 @@ function Login(props) {
   const [username, setUser] = useState(null);
   const [password, setPass] = useState(null);
 
-  var endpoint = "http://ec2-18-138-255-177.ap-southeast-1.compute.amazonaws.com:8080/"
+  var endpoint = "http://ec2-54-251-164-227.ap-southeast-1.compute.amazonaws.com:8080/"
 
 
   function login(username,password,history){
@@ -81,10 +81,6 @@ function Login(props) {
         />
       </div>
       <div>
-        <div className="RegisterButton"
-        onClick={()=>register(username,password)}>
-          <p>สมัครสมาชิก</p>
-        </div>
         <div className="LogButton"
         onClick={()=>login(username,password,props.history)}>
           <p>เข้าสู่ระบบ</p>
