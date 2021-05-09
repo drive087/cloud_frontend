@@ -13,7 +13,7 @@ function Login(props) {
   const [username, setUser] = useState(null);
   const [password, setPass] = useState(null);
 
-  var endpoint = "http://ec2-13-213-29-64.ap-southeast-1.compute.amazonaws.com:8080/"
+  var endpoint = "http://ec2-18-138-255-177.ap-southeast-1.compute.amazonaws.com:8080/"
 
 
   function login(username,password,history){

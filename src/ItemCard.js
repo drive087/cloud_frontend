@@ -9,8 +9,9 @@ import ItemImg from './ItemImg';
 function ItemCard(props) {
     const [name , setFirstName] = useState(props.item.name);
     const [amount, setLastName] = useState(props.item.amount);
-    const map_price = require('./img/category.json')
-    const price = map_price[name]
+    const [price, setPrice] = useState(props.item.price);
+    const map_eng_th= require('./map_eng_th.json')
+
     const src_img = "./img/".concat(name,".jpeg")
     
     return (
@@ -23,10 +24,10 @@ function ItemCard(props) {
                         <p>x {amount}</p>
                     </Grid>
                     <Grid item xs>
-                        <p >{name}</p>
+                        <p >{map_eng_th[name]}</p>
                     </Grid>
                     <Grid item xs>
-                        <p>{price * amount}Baht</p>
+                        <p>{price * amount}บาท</p>
                     </Grid>
                     
                 </Grid>
